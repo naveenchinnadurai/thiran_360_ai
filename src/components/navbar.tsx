@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ViewCart from "./cart";
 
 const navItems = [
     {
@@ -27,7 +28,7 @@ export default function Navbar() {
                 <Link to='/' className="text-2xl font-extrabold text-primary">ShopMate</Link>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex space-x-6">
+                <div className="hidden md:flex items-center space-x-6 ">
                     {
                         navItems.map((item) => (
                             <Link
@@ -38,6 +39,7 @@ export default function Navbar() {
                             </Link>
                         ))
                     }
+                    <ViewCart />
                 </div>
 
                 {/* Mobile Toggle Button */}

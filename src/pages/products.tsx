@@ -1,11 +1,14 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/context/store";
 import { productsData } from "@/lib/products";
+import { useState } from "react";
 
 const ITEMS_PER_PAGE = 8;
 
 export default function Product() {
+
+    const { addToCart } = useCart();
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,7 +41,7 @@ export default function Product() {
                             setSearchQuery(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="w-full max-w-xl rounded-full px-6 py-3 text-lg shadow-sm focus:ring-2 focus:ring-primary"
+                        className="w-full max-w-xl rounded-full px-6 py-6 text-lg shadow-sm focus:ring-2 focus:ring-primary"
                     />
                 </div>
                 <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -58,7 +61,7 @@ export default function Product() {
                                         <h3 className="font-semibold text-xl mb-1 truncate" title={product.name}>{product.name}</h3>
                                         <p className="text-primary text-lg font-bold mb-4">{product.price}</p>
                                         <div className="flex gap-2">
-                                            <Button className="w-1/2" variant="outline">
+                                            <Button className="w-1/2" variant="outline" onClick={() => addToCart(product.id)}>
                                                 Add to Cart
                                             </Button>
                                             <Button className="w-1/2" variant="default">
